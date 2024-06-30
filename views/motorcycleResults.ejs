@@ -1,0 +1,152 @@
+<!-- views/motorcycleResults.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorcycle Results</title>
+    <style>
+        /* styles.css */
+
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle, rgba(54,16,166,1) 0%, rgba(189,63,231,1) 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; /* Adjust maximum width as needed */
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: white; /* Purple accent */
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: black; /* Deep purple label */
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9); /* Input background with transparency */
+}
+
+input[type="text"]:focus {
+    border-color: #6200ee; /* Focused input border color */
+    outline: none;
+}
+
+button {
+    background-color: #3f51b5; /* Indigo button */
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #303f9f; /* Darker indigo on hover */
+}
+
+.motorcycle-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+    gap: 20px; /* Gap between grid items */
+}
+
+.motorcycle-item {
+    background-color: #fff; /* Light background color */
+    padding: 15px; /* Padding inside each item */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+p {
+    color: #333;
+    margin: 8px 0;
+}
+
+p.error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- views/motorcycleResults.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorcycle Results</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Link to your external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Motorcycle Results</h1>
+
+        <form action="/motorcycles" method="GET">
+            <label for="make">Enter motorcycle make:</label>
+            <input type="text" id="make" name="make" value="<%= make %>" required>
+            <br><br>
+            <label for="model">Enter motorcycle model:</label>
+            <input type="text" id="model" name="model" value="<%= model %>" required>
+            <br><br>
+            <button type="submit">Search</button>
+        </form>
+
+        <% if (motorcycles && motorcycles.length > 0) { %>
+            <div class="motorcycle-list">
+                <% motorcycles.forEach(motorcycle => { %>
+                    <div class="motorcycle-item">
+                        <p><strong>Brand:</strong>Kawasaki</p>
+                        <p><strong>Model:</strong> <%= motorcycle.model %></p>
+                        <p><strong>Year:</strong> <%= motorcycle.year %></p>
+                        
+                    </div>
+                <% }) %>
+            </div>
+        <% } else if (motorcycles && motorcycles.length === 0) { %>
+            <p>No motorcycles found for <%= make %> <%= model %>.</p>
+        <% } else { %>
+            <p>No motorcycle details available. Please search for a make and model to display motorcycles.</p>
+        <% } %>
+    </div>
+</body>
+</html>
+
+</body>
+</html>
